@@ -5,7 +5,7 @@ namespace SnakeGuum
 {
     public static class Globals
     {
-        //  global settings
+        //  global settings/fields/properties
 
         public static int ScreenWidth = 1280;
         public static int ScreenHeight = 720;
@@ -13,8 +13,6 @@ namespace SnakeGuum
         //  center point of the screen
         public static Vector2 Center => new Vector2(ScreenWidth / 2, ScreenHeight / 2);
 
-        //  etc..
-        //public static float Volume = 1f;
     }
 
     public static class Rng

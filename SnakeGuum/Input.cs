@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Input;
 namespace SnakeGuum
 {
     public static class Input
-    {        //  input wrapper class
+    {        
+        //  keyboard & mouse input wrapper/helper class
 
         public static KeyboardState KeyState;
         public static MouseState MouseState;

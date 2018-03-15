@@ -10,11 +10,13 @@ namespace SnakeGuum
     {
         public List<Body> bodies = new List<Body>();
 
+        public int FruitEaten = 0;
+
         public Head()
         {
             Texture = GameContent.snakeHead;    // set texture as snakeHead
             Position = Globals.Center;  // set start position to center of screen
-            Speed = 150f;   // 200 speed
+            Speed = 150f;   // set speed (pixels per second)
             Size = new Vector2(32, 32); // size of the sprite/head  (pixels  32x32)
 
             Color = Color.DarkGreen;
@@ -23,7 +25,7 @@ namespace SnakeGuum
 
         public void AddBody()
         {
-            SnakePart target;
+            SnakePart target = null;
 
             if(bodies.Count == 0)
                 target = this;
@@ -55,9 +57,6 @@ namespace SnakeGuum
             //  move head towards mouse position
             Position += Speed * Direction * delta;
 
-            //  increase speed as time goes (+1 speed / per second)
-            Speed += delta;
-
             //  update all body parts in the List
             foreach(Body body in bodies)
             {
@@ -70,8 +69,12 @@ namespace SnakeGuum
 
         public void Eat(Fruit fruit)
         {
-            fruit.Eaten = true;
+            fruit.IsEaten = true;     // is eaten, will be removed
             AddBody();
+            FruitEaten++;
+
+            //  increase speed by 10 when eat
+            Speed += 10;
         }
 
 

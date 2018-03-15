@@ -17,7 +17,7 @@ namespace SnakeGuum
     public class Fruit : Sprite
     {
         public FruitType fruitType;
-        public bool Eaten = false;
+        public bool IsEaten = false;
 
         public Fruit(FruitType type)
         {
@@ -46,7 +46,7 @@ namespace SnakeGuum
 
         public void CheckIfPlayerIsClose(Head player)
         {
-
+            // if head rectangle touch fruit rectangle,  player eats it
             if(player.Rectangle.Intersects(Rectangle))
             {
                 player.Eat(this);

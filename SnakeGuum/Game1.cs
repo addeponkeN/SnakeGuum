@@ -16,7 +16,6 @@ namespace SnakeGuum
 
         public List<Fruit> fruits = new List<Fruit>();
         public float FruitSpawnTimer = 0f;
-        
 
         public Game1()
         {
@@ -96,6 +95,8 @@ namespace SnakeGuum
             if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             //  update the input wrapper class
             Input.Update(gameTime);
 
@@ -103,24 +104,27 @@ namespace SnakeGuum
             //  update the player (head)
             Player.Update(gameTime);
 
+
+            //  check each fruit if close to player
             foreach(Fruit fruit in fruits)
             {
                 fruit.CheckIfPlayerIsClose(Player);
             }
 
-            //  remove all eaten fruits from list
-            fruits.RemoveAll(x => x.Eaten);
+            //  if fruit is eaten, remove it
+            fruits.RemoveAll(x => x.IsEaten);
 
-            var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //  if no fruit on map, spawn a fruit
+            if(fruits.Count == 0)
+                SpawnFruit();
 
+            //  spawn new fruit every 3 seconds
             FruitSpawnTimer += delta;
-
-            if(FruitSpawnTimer > 4)
+            if(FruitSpawnTimer > 3)
             {
                 SpawnFruit();
                 FruitSpawnTimer = 0;
             }
-
 
             base.Update(gameTime);
         }
@@ -158,6 +162,14 @@ namespace SnakeGuum
                 fruit.Draw(spriteBatch);
             }
 
+            //  draw a string
+            string text = $"Fruit: {Player.FruitEaten}";
+            Vector2 textPosition = new Vector2(5, 5);
+            spriteBatch.DrawString(GameContent.gameFont, text, textPosition, Color.Black);
+
+            text = $"Speed: {Player.Speed:N0}";
+            textPosition = new Vector2(Globals.Center.X, 5);
+            spriteBatch.DrawString(GameContent.gameFont, text, textPosition, Color.Black);
 
             //  end drawing
             spriteBatch.End();

@@ -7,11 +7,13 @@ namespace SnakeGuum
     {
         public static Texture2D snakeHead;
         public static Texture2D snakeBody;
+        public static SpriteFont gameFont;
 
         public static void Load(ContentManager content)
         {
             snakeHead = content.Load<Texture2D>("snakehead");
             snakeBody = content.Load<Texture2D>("snakebody");
+            gameFont = content.Load<SpriteFont>("gameFont");
         }
     }
 }
