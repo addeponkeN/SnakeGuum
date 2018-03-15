@@ -20,6 +20,7 @@ namespace SnakeGuum
             Color = Color.DarkGreen;
         }
 
+
         public void AddBody()
         {
             SnakePart target;
@@ -36,6 +37,7 @@ namespace SnakeGuum
 
             bodies.Add(body);
         }
+
 
         public override void Update(GameTime gt)
         {
@@ -65,11 +67,13 @@ namespace SnakeGuum
 
         }
 
+
         public void Eat(Fruit fruit)
         {
             fruit.Eaten = true;
             AddBody();
         }
+
 
         public override void Draw(SpriteBatch batch)
         {

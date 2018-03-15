@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace SnakeGuum
@@ -150,13 +149,8 @@ namespace SnakeGuum
             //  begin drawing
             spriteBatch.Begin();
 
-            Texture2D t = GameContent.snakeBody;
-            spriteBatch.Draw(t, new Rectangle(32, 32, 32, 32), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.5f);
-
-
             //  draw the player
             Player.Draw(spriteBatch);
-
 
             //  draw all fruit
             foreach(Fruit fruit in fruits)
